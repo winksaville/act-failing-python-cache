@@ -23,10 +23,10 @@ jobs:
         id: python-cache
         uses: actions/cache@v2
         with:
-          path: /opt/hostedtoolcache/Python/3.6.12/x64
-          key: ${{ runner.os }}-python-3.6.12-${{ hashFiles('**/*requirements.txt') }}
+          path: ${{ env.pythonLocation }}
+          key: ${{ runner.os }}-python-${{ env.pytnonLocation }}-${{ hashFiles('**/*requirements.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python-3.6.12
+            ${{ runner.os }}-python-${{ env.pythonLocation }}
 
       - name: Display python info
         run: |
@@ -34,12 +34,6 @@ jobs:
           echo matirx.python-version=${{ matrix.python-version }}
           echo steps.python-cache.outputs.cache-hit=${{ steps.python-cache.outputs.cache-hit }}
           echo env.pythonLocation=${{ env.pythonLocation }}
-          echo steps.python-cache: ${{ steps.python-cache }}
-          echo steps.python-cache.uses: ${{ steps.python-cache.uses }}
-          echo steps.python-cache.with: ${{ steps.python-cache.with }}
-          echo steps.python-cache.with.path: ${{ steps.python-cache.with.path }}
-          echo steps.python-cache.with.key: ${{ steps.python-cache.with.key }}
-          echo steps.python-cache.with.restore-keys: ${{ steps.python-cache.with.restore-keys }}
           ls -al ${{ env.pythonLocation }}
 
       - name: Test if cache hit is true
