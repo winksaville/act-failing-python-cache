@@ -10,23 +10,15 @@ $ git log --pretty=oneline -1
 A test case showing the python-cache step fails
 because env.pythonLocation cannot be used to set the path
 when using act:
-
 ```
-wink@3900x:~/prgs/python/projects/hw (master)
+wink@3900x:~/prgs/python/projects/hw (main)
 $ ~/prgs/nektos/forks/act/dist/local/act
-WARN[0000] unable to get git repo: section 'remote "origin"' does not exist 
 [t1/Linux build and test] 🧪  Matrix: map[python-version:3.6]
 [t1/Linux build and test] 🚀  Start image=winksaville/ubuntu-dev:20.04
-WARN[0000] unable to get git repo: section 'remote "origin"' does not exist 
 [t1/Linux build and test]   🐳  docker run image=winksaville/ubuntu-dev:20.04 entrypoint=["/usr/bin/tail" "-f" "/dev/null"] cmd=[]
 [t1/Linux build and test]   🐳  docker cp src=/home/wink/prgs/python/projects/hw/. dst=/github/workspace
-WARN[0000] unable to get git repo: section 'remote "origin"' does not exist 
-WARN[0000] unable to get git repo: section 'remote "origin"' does not exist 
 [t1/Linux build and test] ⭐  Run actions/checkout@v2
-WARN[0000] unable to get git repo: section 'remote "origin"' does not exist 
 [t1/Linux build and test]   ✅  Success - actions/checkout@v2
-WARN[0000] unable to get git repo: section 'remote "origin"' does not exist 
-WARN[0000] unable to get git repo: section 'remote "origin"' does not exist 
 [t1/Linux build and test] ⭐  Run Set up Python ${{ matrix.python-version }}
 [t1/Linux build and test]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v2
 [t1/Linux build and test]   🐳  docker cp src=/home/wink/.cache/act/actions-setup-python@v2 dst=/actions/
@@ -64,12 +56,12 @@ WARN[0000] unable to get git repo: section 'remote "origin"' does not exist
 | Version 3.6 is available for downloading
 | Download from "https://github.com/actions/python-versions/releases/download/3.6.12-86954/python-3.6.12-linux-20.04-x64.tar.gz"
 [t1/Linux build and test]   💬  ::debug::Downloading https://github.com/actions/python-versions/releases/download/3.6.12-86954/python-3.6.12-linux-20.04-x64.tar.gz
-[t1/Linux build and test]   💬  ::debug::Destination /tmp/ec94c4d3-f114-47c1-b36e-6e8e37df04f3
+[t1/Linux build and test]   💬  ::debug::Destination /tmp/749129b8-2c15-448c-bec5-7c690c6c3890
 [t1/Linux build and test]   💬  ::debug::download complete
 | Extract downloaded archive
 [t1/Linux build and test]   💬  ::debug::Checking tar --version
 [t1/Linux build and test]   💬  ::debug::tar (GNU tar) 1.30%0ACopyright (C) 2017 Free Software Foundation, Inc.%0ALicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.%0AThis is free software: you are free to change and redistribute it.%0AThere is NO WARRANTY, to the extent permitted by law.%0A%0AWritten by John Gilmore and Jay Fenlason.
-| [command]/usr/bin/tar xz --warning=no-unknown-keyword -C /tmp/0fca6025-e17a-46c2-882e-bbb491a0c0ac -f /tmp/ec94c4d3-f114-47c1-b36e-6e8e37df04f3
+| [command]/usr/bin/tar xz --warning=no-unknown-keyword -C /tmp/01b5181b-0810-45f1-846f-145dafe6570f -f /tmp/749129b8-2c15-448c-bec5-7c690c6c3890
 | Execute installation script
 | Check if Python hostedtoolcache folder exist...
 | Creating Python hostedtoolcache folder...
@@ -77,7 +69,7 @@ WARN[0000] unable to get git repo: section 'remote "origin"' does not exist
 | Copy Python binaries to hostedtoolcache folder
 | Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
 | Upgrading PIP...
-| Looking in links: /tmp/tmpfgqsqyb9
+| Looking in links: /tmp/tmp1sy_bm5m
 | Requirement already satisfied: setuptools in /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages (40.6.2)
 | Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.6.12/x64/lib/python3.6/site-packages (18.1)
 | Collecting pip
@@ -102,8 +94,6 @@ WARN[0000] unable to get git repo: section 'remote "origin"' does not exist
 | Successfully setup CPython (3.6.12)
 [t1/Linux build and test]   ❓  ##[add-matcher]/actions/actions-setup-python@v2/.github/python.json
 [t1/Linux build and test]   ✅  Success - Set up Python ${{ matrix.python-version }}
-WARN[0010] unable to get git repo: section 'remote "origin"' does not exist 
-WARN[0010] unable to get git repo: section 'remote "origin"' does not exist 
 [t1/Linux build and test] ⭐  Run Python cache
 [t1/Linux build and test]   ☁  git clone 'https://github.com/actions/cache' # ref=v2
 [t1/Linux build and test]   🐳  docker cp src=/home/wink/.cache/act/actions-cache@v2 dst=/actions/
@@ -114,4 +104,5 @@ WARN[0010] unable to get git repo: section 'remote "origin"' does not exist
 | (node:67) [DEP0011] DeprecationWarning: crypto.Credentials is deprecated. Use tls.SecureContext instead.
 [t1/Linux build and test]   ❌  Failure - Python cache
 Error: exit with `FAILURE`: 1
+[3]+  Done                    git gui
 ```
