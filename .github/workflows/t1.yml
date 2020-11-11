@@ -23,16 +23,36 @@ jobs:
         id: python-cache
         uses: actions/cache@v2
         with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('**/*requirements.txt') }}
+          path: /opt/hostedtoolcache/Python/3.6.12/x64
+          key: ${{ runner.os }}-python-3.6.12-${{ hashFiles('**/*requirements.txt') }}
           restore-keys: |
-            ${{ runner.os }}-python-${{ env.pythonLocation }}
+            ${{ runner.os }}-python-3.6.12
 
       - name: Display python info
-        if: steps.python-cache.outputs.cache-hit != 'true'
         run: |
           python --version
           echo matirx.python-version=${{ matrix.python-version }}
           echo steps.python-cache.outputs.cache-hit=${{ steps.python-cache.outputs.cache-hit }}
           echo env.pythonLocation=${{ env.pythonLocation }}
+          echo steps.python-cache: ${{ steps.python-cache }}
+          echo steps.python-cache.uses: ${{ steps.python-cache.uses }}
+          echo steps.python-cache.with: ${{ steps.python-cache.with }}
+          echo steps.python-cache.with.path: ${{ steps.python-cache.with.path }}
+          echo steps.python-cache.with.key: ${{ steps.python-cache.with.key }}
+          echo steps.python-cache.with.restore-keys: ${{ steps.python-cache.with.restore-keys }}
           ls -al ${{ env.pythonLocation }}
+
+      - name: Test if cache hit is true
+        if: ${{ steps.python-cache.outputs.cache-hit == 'true' }}
+        run:  echo steps.python-cache.outputs.cache-hit is true
+
+      - name: Test if cache hit is not true
+        if: ${{ steps.python-cache.outputs.cache-hit != 'true' }}
+        run:  echo steps.python-cache.outputs.cache-hit is NOT true
+
+      - name: Always
+        if: ${{ always() }}
+        run:  echo Done
+
+      - name: Done
+        run:  echo Done
