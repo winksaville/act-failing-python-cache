@@ -19,9 +19,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Display env.pythonLocation
-        run: |
-          echo env.pythonLocation=${{ env.pythonLocation }}
+      #- name: Display env.pythonLocation
+      #  run: |
+      #    echo env.pythonLocation=${{ env.pythonLocation }}
 
       - name: Python cache
         id: python-cache

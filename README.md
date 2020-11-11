@@ -1,4 +1,4 @@
-# test case for nektos/act
+# nektos/act handling of env variables
 
 This is using:
 ```
@@ -7,8 +7,8 @@ $ git log --pretty=oneline -1
 695c4966843d319933d110316032863d138a721b (HEAD -> master, upstream/master, origin/master, origin/HEAD) Adds ability to use container images from matrices. (#413)
 ```
 
-A test case showing the python-cache step fails
-because `env.pythonLocation` is empty:
+This is a test case showing the python-cache step fails
+because `env.pythonLocation` is `not supplied`.
 ```
 86	[t1/Linux build and test]   ❗  ::error::Input required and not supplied: path
 87	| (node:68) [DEP0091] DeprecationWarning: crypto.DEFAULT_ENCODING is deprecated.
@@ -17,7 +17,7 @@ because `env.pythonLocation` is empty:
 90	[t1/Linux build and test]   ❌  Failure - Python cache
 91	Error: exit with `FAILURE`: 1
 ```
-But notice at line 74 we see `pythonLocation` being set:
+But notice at line 74 `pythonLocation` is being set:
 ```
 74	[t1/Linux build and test]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.6.12/x64
 ```
@@ -117,14 +117,20 @@ Here is the full log:
 91	Error: exit with `FAILURE`: 1
 ```
 
-But if I add a step that displays `env.pythonLocation` before `python-cache`:
+Further more, if I add a step that displays `env.pythonLocation` before `python-cache`:
 ```
       - name: Display env.pythonLocation
         run: |
           echo env.pythonLocation=${{ env.pythonLocation }}
 ```
 
-It does complete all of the steps:
+It does complete all of the steps, here is the output from the
+[workaround](https://github.com/winksaville/act-failing-python-cache/tree/workaround)
+branch.
+
+So somehow accessing the `env.pythonLocaton` before `python-cache`
+causes it to be accessible. Below is the output of running act with
+the `Display env.pythonLocation` step added:
 ```
   1	$ ~/prgs/nektos/forks/act/dist/local/act
   2	[t1/Linux build and test] 🧪  Matrix: map[python-version:3.6]
