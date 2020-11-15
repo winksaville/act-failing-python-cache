@@ -23,13 +23,13 @@ jobs:
       #  run: |
       #    echo env.pythonLocation=${{ env.pythonLocation }}
 
-      - name: Python cache
-        id: python-cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('**/*requirements.txt') }}
-          restore-keys: ${{ runner.os }}-python-${{ env.pythonLocation }}
+      #- name: Python cache
+      #  id: python-cache
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: ${{ env.pythonLocation }}
+      #    key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('**/*requirements.txt') }}
+      #    restore-keys: ${{ runner.os }}-python-${{ env.pythonLocation }}
 
       - name: Test if cache hit is true
         if: ${{ steps.python-cache.outputs.cache-hit == 'true' }}
