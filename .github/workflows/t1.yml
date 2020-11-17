@@ -19,29 +19,12 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      #- name: Display env.pythonLocation
-      #  run: |
-      #    echo env.pythonLocation=${{ env.pythonLocation }}
-
       - name: Python cache
         id: python-cache
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('**/*requirements.txt') }}
-          restore-keys: ${{ runner.os }}-python-${{ env.pythonLocation }}
-
-      - name: Test if cache hit is true
-        if: ${{ steps.python-cache.outputs.cache-hit == 'true' }}
-        run:  echo steps.python-cache.outputs.cache-hit is true
-
-      - name: Test if cache hit is not true
-        if: ${{ steps.python-cache.outputs.cache-hit != 'true' }}
-        run:  echo steps.python-cache.outputs.cache-hit is NOT true
-
-      - name: Always
-        if: ${{ always() }}
-        run:  echo Done
+          key: ${{ runner.os }}-python-${{ env.pythonLocation }}
 
       - name: Done
         run:  echo Done
