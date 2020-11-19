@@ -1,25 +1,19 @@
-name: t1
-
-on: [ push, workflow_dispatch ]
+name: python_cache
+on: push
 
 jobs:
-  build:
-
-    name: Linux build and test
+  test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.6]
-
     steps:
-      - uses: actions/checkout@v2
+      - name: step1
+        uses: actions/checkout@v2
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: step2
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
 
-      - name: Python cache
+      - name: step3
         id: python-cache
         uses: actions/cache@v2
         with:
