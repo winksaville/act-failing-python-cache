@@ -6,15 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: step1
-        uses: actions/checkout@v2
-
-      - name: step2
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
 
-      - name: step3
-        id: python-cache
+      - name: step2
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
